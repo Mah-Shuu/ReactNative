@@ -10,8 +10,13 @@ export default function Index() {
       <View className="h-16 bg-orange-600 flex justify-center">
         <Text className="ml-3 text-xl text-white">Detalhes do Produto</Text>
       </View>
-      <View>
-        <Image/>
+      <View className="flex items-center">
+        <Image className="object-cover h-60 w-72 mt-5" source={{uri: "https://www.pngplay.com/wp-content/uploads/9/Air-Jordan-No-Background.png"}}/>
+        <View className="flex w-full">
+          <View className="m-8">
+            <Text className="text-2xl font-bold">Air Jordan</Text>
+          </View>
+        </View>
       </View>
     </View>
   );
