@@ -26,7 +26,7 @@ export default function Index() {
       </View>
 
       <ScrollView>
-        <View className="m-3 mt-0 pb-16 gap-2">
+        <View className="m-3 mt-0 pb-32 gap-2">
 
           <View className="flex items-center bg-white rounded drop-shadow-lg p-4 gap-3">
             <Image className="object-cover h-60 w-60" source={{uri: "https://brainrottoy.com/cdn/shop/files/Tung-tung-tung-sahur-brainrot-toy-buy-brainrottoy-plushie-png.png?v=1744919619"}}/>
