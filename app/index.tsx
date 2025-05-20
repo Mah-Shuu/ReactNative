@@ -1,25 +1,42 @@
-import { useState } from "react";
-import { Text, View, Image, TouchableOpacity, TextInput} from "react-native";
+import { useEffect, useState } from "react";
+import { Text, View, Image, TouchableOpacity, TextInput, ScrollView} from "react-native";
 
 export default function Index() {
-  const [lista, setLista] = useState<string[]>([]);
-  let [texto, setTexto] = useState("");
 
-  function addLista(){
-    setLista((elementosAnteriores) => [...elementosAnteriores,texto])
+  interface ProdutosAPI{
+
   }
 
+  const [dados, setDados] = useState<ProdutosAPI[]>([]);
+  const [loading,setLoading] = useState(true)
+
+  async function puxarDados(){
+    const response = await fetch('https://fakestoreapi.com/products');
+    const data = await response.json()
+
+    setDados(data);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    puxarDados()
+    console.log(dados)
+  },[])
+
   return (
-    <View className="bg-slate-100 p-4 flex gap-3">
-      <Text className="text-2xl">Lista de Tarefas</Text>
-      
-      <TextInput onChangeText={setTexto} className="flex-1 bg-white border-2 border-gray-400 p-2 rounded" placeholder="Digite uma tarefa..."/>
-      <TouchableOpacity onPress={addLista} className="bg-orange-500 justify-center items-center p-2 rounded"><Text className="text-white">Adicionar Tarefa</Text></TouchableOpacity>
-      
-      <Text>Total de tarefas: {lista.length}</Text>
-      {lista.map((item,index) => (
-         <Text key={index}>{item}</Text>
-      ))}
+    <View className="bg-slate-100 flex-1 p-4">
+      <Text className="flex-1 text-center">Loja Virtual</Text>
+
+      <ScrollView className="">
+        {dados.map((item, index) => (
+          <View className="p-4 bg-white rounded">
+            <Image className="h-72" source={{uri: item.image}}></Image>
+            <Text>{item.title}</Text>
+            <Text>{item.category}</Text>
+            <Text>{item.price}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
