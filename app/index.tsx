@@ -4,7 +4,12 @@ import { Text, View, Image, TouchableOpacity, TextInput, ScrollView, ActivityInd
 export default function Index() {
 
   interface ProdutosAPI{
-
+    id : number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
   }
 
   const [dados, setDados] = useState<ProdutosAPI[]>([]);
@@ -20,7 +25,6 @@ export default function Index() {
 
   useEffect(() => {
     puxarDados()
-    console.log(dados)
   },[])
 
   if(loading){
@@ -32,16 +36,17 @@ export default function Index() {
   }
 
   return (
-    <View className="bg-slate-100 flex-1 p-4">
-      <Text className="flex-1 text-center">Loja Virtual</Text>
+    <View className="bg-slate-100 flex-1">
+
+      <Text className="flex-1 text-center p-4 text-xl">🛒 Loja Virtual</Text>
 
       <ScrollView className="">
         {dados.map((item, index) => (
-          <View className="p-4 bg-white rounded">
-            <Image className="h-72" source={{uri: item.image}}></Image>
-            <Text>{item.title}</Text>
-            <Text>{item.category}</Text>
-            <Text>{item.price}</Text>
+          <View key={index} className="p-4 m-3 bg-white rounded-xl drop-shadow-xl items-center">
+            <Image resizeMode="contain" className=" w-full h-72 items-center justify-center" source={{uri: item.image}}></Image>
+            <Text className="text-lg font-bold w-full mt-2">{item.title}</Text>
+            <Text className="w-full">{item.category}</Text>
+            <Text className="text-green-500 font-bold w-full mt-2">R$ {item.price}</Text>
           </View>
         ))}
       </ScrollView>
