@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Text, View, Image, TouchableOpacity, TextInput, ScrollView} from "react-native";
+import { Text, View, Image, TouchableOpacity, TextInput, ScrollView, ActivityIndicator} from "react-native";
 
 export default function Index() {
 
@@ -22,6 +22,14 @@ export default function Index() {
     puxarDados()
     console.log(dados)
   },[])
+
+  if(loading){
+    return (
+      <View className="flex-1 bg-white items-center justify-center drop-shadow-xl">
+        <ActivityIndicator size={"large"} color={"#000000"} />
+      </View>
+    )
+  }
 
   return (
     <View className="bg-slate-100 flex-1 p-4">
