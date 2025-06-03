@@ -1,55 +1,28 @@
-import { useEffect, useState } from "react";
-import { Text, View, Image, TouchableOpacity, TextInput, ScrollView, ActivityIndicator} from "react-native";
+import { Link, router } from "expo-router";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
-export default function Index() {
+export default function Login(){
 
-  interface ProdutosAPI{
-    id : number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-  }
-
-  const [dados, setDados] = useState<ProdutosAPI[]>([]);
-  const [loading,setLoading] = useState(true)
-
-  async function puxarDados(){
-    const response = await fetch('https://fakestoreapi.com/products');
-    const data = await response.json()
-
-    setDados(data);
-    setLoading(false);
-  }
-
-  useEffect(() => {
-    puxarDados()
-  },[])
-
-  if(loading){
-    return (
-      <View className="flex-1 bg-white items-center justify-center drop-shadow-xl">
-        <ActivityIndicator size={"large"} color={"#000000"} />
+  return(
+    <View className="flex-1 justify-center items-center bg-slate-100 p-6 gap-7">
+      <View className="items-center gap-2">
+        <Text className="text-4xl font-bold">Bem vindo</Text>
+        <Text className="text-slate-500">Entre com sua conta</Text>
       </View>
-    )
-  }
 
-  return (
-    <View className="bg-slate-100 flex-1">
+      <View className="flex w-full gap-3">
+        <TextInput className="bg-white p-3 rounded-full drop-shadow-md w-full" placeholder="Usuário"/>
+        <TextInput className="bg-white p-3 rounded-full drop-shadow-md w-full" placeholder="Senha"/>
+        <View className="items-end">
+          <TouchableOpacity ><Text className="text-slate-500">Esqueceu a senha?</Text></TouchableOpacity>
+        </View>
+      </View>
 
-      <Text className="flex-1 text-center p-4 text-xl">🛒 Loja Virtual</Text>
-
-      <ScrollView className="">
-        {dados.map((item, index) => (
-          <View key={index} className="p-4 m-3 bg-white rounded-xl drop-shadow-xl items-center">
-            <Image resizeMode="contain" className=" w-full h-72 items-center justify-center" source={{uri: item.image}}></Image>
-            <Text className="text-lg font-bold w-full mt-2">{item.title}</Text>
-            <Text className="w-full">{item.category}</Text>
-            <Text className="text-green-500 font-bold w-full mt-2">R$ {item.price}</Text>
-          </View>
-        ))}
-      </ScrollView>
+      <TouchableOpacity className="drop-shadow-md text-center w-96 p-3 rounded-full text-white font-semibold bg-gradient-to-r from-orange-500 to-orange-300">Entrar</TouchableOpacity>
+      <View className="flex-row gap-1">
+        <Text className="text-slate-500">Não tem uma conta?</Text>
+        <Link href={'/view/cadastro'}><Text className="font-bold">Criar</Text></Link>
+      </View>
     </View>
   );
 }
