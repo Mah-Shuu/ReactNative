@@ -1,4 +1,4 @@
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function Login(){
@@ -15,7 +15,7 @@ export default function Login(){
         <TextInput className="bg-white p-3 rounded-full drop-shadow-md w-full" placeholder="Senha"/>
       </View>
 
-      <TouchableOpacity className="drop-shadow-md text-center w-96 p-3 rounded-full text-white font-semibold bg-gradient-to-r from-orange-500 to-orange-300">Cadastrar</TouchableOpacity>
+      <TouchableOpacity onPress={() => router.push('/')} className="drop-shadow-md text-center w-96 p-3 rounded-full text-white font-semibold bg-gradient-to-r from-orange-500 to-orange-300">Cadastrar</TouchableOpacity>
       <View className="flex-row gap-1">
         <Text className="text-slate-500">Já tem uma conta?</Text>
         <Link href={'/'}><Text className="font-bold">Entrar</Text></Link>

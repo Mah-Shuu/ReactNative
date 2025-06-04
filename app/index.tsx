@@ -18,7 +18,7 @@ export default function Login(){
         </View>
       </View>
 
-      <TouchableOpacity className="drop-shadow-md text-center w-96 p-3 rounded-full text-white font-semibold bg-gradient-to-r from-orange-500 to-orange-300">Entrar</TouchableOpacity>
+      <TouchableOpacity onPress={() => router.push('/view/home')} className="drop-shadow-md text-center w-96 p-3 rounded-full text-white font-semibold bg-gradient-to-r from-orange-500 to-orange-300">Entrar</TouchableOpacity>
       <View className="flex-row gap-1">
         <Text className="text-slate-500">Não tem uma conta?</Text>
         <Link href={'/view/cadastro'}><Text className="font-bold">Criar</Text></Link>
