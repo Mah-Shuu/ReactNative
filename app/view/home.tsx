@@ -40,7 +40,7 @@ export default function Home(){
         <View className="flex-1  bg-slate-100">
             <ScrollView className="h-screen ">
                 {produtos.map((item, index) => (
-                    <View key={index} className="m-2 flex-row box-border items-center text-wrap gap-3 bg-white p-2 rounded-xl">
+                    <View key={index} className="m-2 flex-row box-border items-center text-wrap gap-3 bg-white p-2 rounded-xl drop-shadow-md">
                         <Image resizeMode="contain" className=" w-32 h-32 items-center justify-center" source={{uri: item.image}}></Image>
                         <View className="flex justify-between text-wrap w-full h-full" style={{flexShrink: 1}}>
                             <View className="flex text-wrap" >
